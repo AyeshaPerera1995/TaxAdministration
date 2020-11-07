@@ -1,0 +1,208 @@
+/*Search Bar Styles*/
+.site-search{
+float: left;
+margin: 15px;
+background: white;
+padding: 5px 7px 3px 10px;
+border-radius: 10px;
+}
+
+.site-search input{
+    border:0;
+    float: left;
+    width: 400px;
+}
+
+.site-search button{
+    background:url(../img/mysearch.png);
+    border:none;
+    width: 18px;
+    height: 18px;
+    float: right;
+}
+
+.custombutton a{
+  width: 600px;
+	border:2px solid #eea412;
+	position:relative; 
+	font-size: 18px;
+	display: inline-block;
+	text-decoration: none;
+  font-family: monospace;
+	font-size: 18px;
+	padding: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  /*border-radius: 10px;*/
+  margin-bottom: 20px;
+	text-align: center;
+}
+
+.custombutton a.hover-btn-new::after {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.custombutton a.hover-btn-new::before,
+.custombutton a.hover-btn-new::after {
+  background: #eea412;
+  content: '';
+  position: absolute;
+  z-index: 1;
+}
+
+.custombutton a.hover-btn-new:hover span {
+  color: #ffffff;
+}
+.custombutton a.hover-btn-new::before {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.custombutton a.hover-btn-new::after {
+  background: #ffffff !important;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.custombutton a.hover-btn-new span{
+	position: relative;
+	z-index: 2;
+	color: #333333;
+}
+.custombutton a.hover-btn-new:hover:after {
+  height: 0;
+  left: 50%;
+  top: 50%;
+  width: 0;
+}
+
+/*Form Styles*/
+
+.login-content {
+  max-width: 540px;
+  margin: 8vh auto; }
+
+.login-form {
+  background: #ffffff;
+  padding: 30px 30px 20px;
+  border-radius: 20px; }
+
+.login-form h4 {
+  color: #878787;
+  text-align: center;
+  margin-bottom: 50px; }
+
+.login-form textarea{
+  border-radius: 5px;
+  border:1px solid #d2d0d0;
+}
+
+.login-form .checkbox {
+  color: #878787; }
+
+.login-form .checkbox label {
+  text-transform: none; }
+
+.login-form .btn {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 15px;
+  border: 0; }
+
+.login-form label {
+  color: #878787;
+  text-transform: uppercase; }
+
+.login-form label a {
+  color: #ff2e44; }
+
+ul li a.tabstyle{
+  color: white;
+  background:#eea412;
+  width: 193px;
+}
+
+ul li a.tabstyle:hover{
+ /*border:1px solid #eea412;*/
+ /*background:white;*/
+ color: #333;
+}
+
+ul li a.tabstyle:active{
+ background-color: #eea412;
+}
+
+  .corner-ribon {
+  text-align: center;
+  width: 71px;
+  height: 71px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px; }
+
+.corner-ribon i {
+  padding: 10px 0 0 35px;
+  color: #fff; }
+
+.black-ribon {
+  background: url("../img/twitter_corner_black.png") no-repeat; }
+
+.blue-ribon {
+  background: url("../img/twitter_corner_blue.png") no-repeat; }
+
+.twt-feed .wtt-mark {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 160px;
+  position: absolute;
+  top: 10px;
+  left: 18%; }
+
+.twt-feed {
+  -webkit-border-radius: 4px 4px 0 0;
+  color: #FFFFFF;
+  padding: 40px 10px 10px;
+  position: relative;
+  min-height: 170px; }
+
+.weather-category {
+
+  padding: 15px 0 0 0;
+  color: #74829C; }
+
+  .weather-category ul li {
+    width: 35%;
+    text-align: center;
+    border-right: 1px solid #e6e6e6;
+    display: inline-block; }
+
+    .weather-category ul li:last-child {
+      border:none;
+    }
+
+.twt-feed.blue-bg {
+  background: #eea412; }
+
+.twt-category {
+  display: inline-block;
+  margin-bottom: 11px;
+  margin-top: 10px;
+  width: 100%; }
+
+  .twt-category ul li {
+    color: #bdbdbd;
+    font-size: 13px; }
+
+    .twt-category ul li h5 {
+    color: #bdbdbd;
+    font-size: 15px; 
+    font-weight: bold;}
+
+/*background: linear-gradient(#0d0d0d,#333333,#0d0d0d);*/
