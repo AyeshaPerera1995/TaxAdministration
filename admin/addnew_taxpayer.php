@@ -67,7 +67,7 @@ if (!isset($_SESSION['admin_email'])) {
                                     </div>                                   
                                     <div class="form-group">
                                         <label>Residence Address</label><br>
-                                        <textarea style="padding:10px;" required="" name="address" cols="65" rows="5" placeholder="Address"></textarea>                                   
+                                        <textarea style="padding:10px;" required="" name="address" cols="56" rows="5" placeholder="Address"></textarea>                                   
                                     </div>
                                     <div class="form-group">
                                         <label>NIC</label>
