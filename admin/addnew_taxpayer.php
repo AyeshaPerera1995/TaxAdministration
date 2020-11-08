@@ -226,17 +226,37 @@ if (isset($_POST['register'])) {
         $run_login = mysqli_query($con, $insert_login);
 
         if ($run_login) {
-            
-// $to = "ayeshaperera9519@gmal.com";
-// $subject = "Registered for Tax Administration Site";
-// $txt = "You are registered for the Tax Administration Site and now you can pay online !";
-// $headers = "From: MyTrainer.2020@gmail.com" . "\r\n" .
-// "CC: somebodyelse@example.com";
 
-//     mail($to,$subject,$txt,$headers);
-// if (mail($to,$subject,$txt,$headers)) {
-//        echo "<script>alert('done mail')</script>";
-// }
+
+
+// **************************************************************************send a sms 
+  
+require __DIR__ . '/vendor/autoload.php';
+use Twilio\Rest\Client;
+
+// Your Account SID and Auth Token from twilio.com/console
+// To set up environmental variables, see http://twil.io/secure
+$account_sid = getenv('AC00c9b4d9d1422c434dc778a5bf94bdf9');
+$auth_token = getenv('c757f38d887975b15e330542fd2c0b3f');
+// In production, these should be environment variables. E.g.:
+// $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
+
+// A Twilio number you own with SMS capabilities
+$twilio_number = "+12057511028";
+
+$client = new Client($account_sid, $auth_token);
+$client->messages->create(
+    // Where to send a text message (your cell phone?)
+    $mobile,
+    array(
+        'from' => $twilio_number,
+        'body' => 'You are registerd for the Tax Payment System in Habaraduwa Pradeshiya Sabha. Now you can Pay Online!'
+    )
+);
+
+// **************************************************************************send a sms 
+
+
 
             echo "<script>
     			swal({
