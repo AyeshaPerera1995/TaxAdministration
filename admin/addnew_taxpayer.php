@@ -43,7 +43,7 @@ if (!isset($_SESSION['admin_email'])) {
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Add New TaxPayer</h2>   
+                     <h2>Register New TaxPayer</h2>   
                         <h5>Welcome to <b>Habaraduwa Pradeshiya Sabha</b> Admin Dashboard </h5>
                        
                     </div>
