@@ -65,13 +65,15 @@ include("functions/function.php");
     // mysqli_num_rows($run_cus) > 0
 
     if ($row_cus!=0) {
-    	// echo "<script>alert('Have')</script>";
-    	$sel_acc = "select * from account where nic='$nic' AND password='$pass' 
-                    AND cus_id='$cid'";
+		// echo "<script>alert('Have')</script>";
+		// ' OR 1=1 #
+		$sel_acc = "select * from account where nic='' OR 1=1 #' AND password='$pass' AND cus_id='$cid'";
+    	// $sel_acc = "select * from account where nic='$nic' AND password='$pass' AND cus_id='$cid'";
     	$run_acc = mysqli_query($con, $sel_acc);
     	$row_acc = mysqli_fetch_array($run_acc);
 
     	if ($row_acc!=0) {
+
     	// Send data to log history
 		$insert_loghis = "insert into log_history (date,in_time,status,account_email) values 
 		('$c_date','$c_time',1,'$email')";
