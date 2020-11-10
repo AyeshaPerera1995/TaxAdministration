@@ -28,6 +28,70 @@ if (!isset($_SESSION['admin_email'])) {
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <!--alert-->
     <script src="../sweetalert/sweetalert2.all.min.js"></script>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <script>
+        function validateNic() {
+        const nic = document.getElementById("nic").value;  
+    
+    // should be requred
+     if(nic=='') {
+        document.getElementById("msg").innerHTML = "Enter the NIC number!";             
+     }
+     else if(nic.length==10){  
+    const lastLetter = nic[nic.length-1];
+    const numbers = nic.slice(0,nic.length-1);
+   if((lastLetter==='V' || lastLetter==='X') && !isNaN(numbers)){             
+    document.getElementById("msg").innerHTML = "";  
+   }else{
+    document.getElementById("msg").innerHTML = "Invalid Old NIC number!";             
+       }
+     }
+  // if length 13
+     else if(nic.length==12){
+   // only digits
+   if(!isNaN(nic)){
+    document.getElementById("msg").innerHTML = "";  
+   }
+   else {
+    document.getElementById("msg").innerHTML = "Invalid New NIC number!";             
+   }
+     }
+     else {
+        document.getElementById("msg").innerHTML = "Invalid NIC number!";             
+     }
+}
+
+
+// validate Number 
+ function validateNumber(){
+    const tel = document.getElementById("tel").value;  
+    if (tel.length==10 && !isNaN(tel)) {   
+        document.getElementById("telMsg").innerHTML = "";     
+    }else if(tel==""){
+        document.getElementById("telMsg").innerHTML = "Enter a Telephone Number !"; 
+    }else{
+        document.getElementById("telMsg").innerHTML = "Invalid Number !";  
+    }
+
+ }
+
+ // validate Mobile 
+ function validateMobile(){
+    const tel = document.getElementById("mobile").value;  
+    if (tel.length==10 && !isNaN(tel)) {   
+        document.getElementById("mobMsg").innerHTML = "";     
+    }else if(tel==""){
+        document.getElementById("mobMsg").innerHTML = "Enter a Mobile Number !"; 
+    }else{
+        document.getElementById("mobMsg").innerHTML = "Invalid Number !";  
+    }
+
+ }
+
+    </script>
 </head>
 
 <body>
@@ -60,7 +124,7 @@ if (!isset($_SESSION['admin_email'])) {
                         <div class="col-md-8">
                             <div class="login-content">
                             <div class="login-form">
-                            <form action="addnew_taxpayer.php" method="post" enctype="multipart/form-data">
+                            <form name="taxPayerForm" action="addnew_taxpayer.php" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Full Name</label>
                                         <input required="" type="text" class="form-control" name="fullname" placeholder="Full Name">
@@ -71,17 +135,21 @@ if (!isset($_SESSION['admin_email'])) {
                                     </div>
                                     <div class="form-group">
                                         <label>NIC</label>
-                                        <input required="" type="text" name="nic" class="form-control" placeholder="NIC Number">                                       
+                                        <input type="text" id="nic" name="nic" class="form-control" onmouseout="validateNic()" placeholder="NIC Number">                                       
+                                        <span id="msg" style="color:red; font-weight:bold;"></span>
                                     </div>
                                     <div class="form-group">
                                         <label>Tel Number</label>
-                                        <input required="" type="number" max="10" min="10" name="tel" class="form-control" placeholder="Telephone">
-                                        <small class="form-text text-muted">ex. (999) 9999999</small>
+                                        <input required="" type="number" id="tel" name="tel" onmouseout="validateNumber()" class="form-control" placeholder="Telephone">
+                                        <!-- <small class="form-text text-muted">ex. (099) 9999999</small> -->
+                                        <span id="telMsg" style="color:red; font-weight:bold;"></span>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label>Mobile</label>
-                                        <input required="" type="number" name="mobile" class="form-control" placeholder="Mobile">
-                                        <small class="form-text text-muted">ex. (999) 9999999</small>
+                                        <input required="" type="number" id="mobile" name="mobile" onmouseout="validateMobile()" class="form-control" placeholder="Mobile">
+                                        <!-- <small class="form-text text-muted">ex. (099) 9999999</small> -->
+                                        <span id="mobMsg" style="color:red; font-weight:bold;"></span>
                                     </div>
                                     <div class="form-group">
                                         <label>Select Image</label>
@@ -204,7 +272,7 @@ if (isset($_POST['register'])) {
 //        echo "<script>alert('Duplicate Email! Try Again..')</script>";
 //        echo "<script>window.open('addnew_taxpayer.php','_self')</script>";
     }else if(mysqli_num_rows($run_email) == 0){
-       echo "<script>alert('insert customer')</script>";
+    //    echo "<script>alert('insert customer')</script>";
     $insert_user = "insert into customer (name,image,address,email,nic,tel_no,mobile,status) 
     values ('$name','$user_image','$address','$email','$nic','$tel','$mobile',1)";
     $run_user = mysqli_query($con, $insert_user);
@@ -231,28 +299,28 @@ if (isset($_POST['register'])) {
 
 // **************************************************************************send a sms 
   
-require __DIR__ . '/vendor/autoload.php';
-use Twilio\Rest\Client;
+// require __DIR__ . '/vendor/autoload.php';
+// use Twilio\Rest\Client;
 
 // Your Account SID and Auth Token from twilio.com/console
 // To set up environmental variables, see http://twil.io/secure
-$account_sid = getenv('AC00c9b4d9d1422c434dc778a5bf94bdf9');
-$auth_token = getenv('c757f38d887975b15e330542fd2c0b3f');
+// $account_sid = getenv('AC00c9b4d9d1422c434dc778a5bf94bdf9');
+// $auth_token = getenv('c757f38d887975b15e330542fd2c0b3f');
 // In production, these should be environment variables. E.g.:
 // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
 
 // A Twilio number you own with SMS capabilities
-$twilio_number = "+12057511028";
+// $twilio_number = "+12057511028";
 
-$client = new Client($account_sid, $auth_token);
-$client->messages->create(
+// $client = new Client($account_sid, $auth_token);
+// $client->messages->create(
     // Where to send a text message (your cell phone?)
-    $mobile,
-    array(
-        'from' => $twilio_number,
-        'body' => 'You are registerd for the Tax Payment System in Habaraduwa Pradeshiya Sabha. Now you can Pay Online!'
-    )
-);
+//     $mobile,
+//     array(
+//         'from' => $twilio_number,
+//         'body' => 'You are registerd for the Tax Payment System in Habaraduwa Pradeshiya Sabha. Now you can Pay Online!'
+//     )
+// );
 
 // **************************************************************************send a sms 
 
